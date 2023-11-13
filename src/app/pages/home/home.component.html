@@ -1,0 +1,8 @@
+<div class="w-full h-full">
+  <div *ngFor="let task of listTasks" class="py-2">
+    <app-task-card [task]="task"></app-task-card>
+  </div>
+</div>
+
+<div *ngIf="general.showDialog" class="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"></div>
+<app-dialog *ngIf="general.showDialog" class="fixed top-20 left-0 right-0 bottom-0 container"></app-dialog>

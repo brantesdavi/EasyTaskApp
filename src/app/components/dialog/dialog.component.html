@@ -1,0 +1,45 @@
+<div class="w-full bg-white inline-block px-3 py-6 rounded-md border border-gray-300 shadow-sm">
+  <div class="font-bold" >Create Task</div>
+
+<form class="mt-6">
+  <div class="grid grid-cols-1 gap-2">
+    <div>
+      <label for="taskTitle" class="inputTextTest block mb-2 text-sm font-medium text-gray-900">Title</label>
+      <input type="text" id="taskTitle" class="bg-white border text-gray-900 text-sm rounded-md block w-full p-2.5" placeholder="Title" required>
+    </div>
+    <div>
+      <label for="taskDescription" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+      <textarea id="taskDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 " placeholder="Task description..."></textarea>
+    </div>
+    <div>
+      Subtarefas
+      <div class="form-check flex items-center gap-2 p-0">
+        <input
+          type="text"
+          id="substask"
+          name="novaSubtask"
+          [(ngModel)]="novaSubtask"
+          class="bg-white border text-gray-900 text-sm rounded-md block w-full p-2.5"
+          placeholder="Subtarefa"
+        />
+
+        <div
+          (click)="adicionarSubtask()"
+          class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none click:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center"
+        >
+          +
+        </div>
+      </div>
+
+      <div *ngFor="let substask of subtasks" class="flex items-center gap-2">
+        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+        <div>{{ substask.title }}</div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class=" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">+ Add New Task</button>
+
+</form>
+
+</div>
+

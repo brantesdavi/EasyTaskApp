@@ -1,0 +1,21 @@
+<div class="bg-white inline-block px-3 py-6 rounded-md border border-gray-300 shadow-sm cursor-pointer">
+  <div class="text-lg font-bold mb-3">
+    {{task.title}}
+  </div>
+  <div class="flex items-center justify-between mb-2">
+    <div [class]="'bg-'+task.priority.color+'-100 inline-block px-3 py-1 rounded-lg'">
+      <div [class]="'text-'+task.priority.color+'-500 text-xs font-bold'">{{task.priority.name}}</div>
+    </div>
+    <div class="text-xs text-gray-600">
+      {{task.deadline}}
+    </div>
+  </div>
+ <div *ngIf="task.subtasks">
+    <div class="mb-2">
+      Tasks: {{completedTasks}}/{{totalTasks}}
+    </div>
+    <div class="w-full bg-blue-100 rounded-full h-2.5">
+      <div class="bg-blue-600 h-2.5 rounded-full" [style.width.%]='progress' ></div>
+    </div>
+  </div>
+</div>
