@@ -2,7 +2,7 @@ export interface Task {
   taskId: number;
   title: string;
   description: string;
-  priority: Priority;
+  priorityId: number;
   createdAt: Date;
   deadline: Date;
   subtasks?: Subtask[];
