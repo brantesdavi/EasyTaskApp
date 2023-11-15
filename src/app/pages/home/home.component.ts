@@ -15,6 +15,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   task: Task | undefined;
   subscription: Subscription | undefined
 
+  // listTasks: Task[] = [
+  //   {
+  //     taskId: 0,
+  //     title: "Title: High priority mobile app design",
+  //     description: "Title: High priority mobile app design",
+  //     priorityId: 4,
+  //     createdAt: new Date(),
+  //     deadline: new Date(),
+  //     subtasks: [
+  //       {
+  //         subtaskId: 0,
+  //         description: "Do something",
+  //         done: false
+  //       },
+  //     ],
+  //   }
+  // ]
+
   constructor(public general: GeneralService, private taskService: TaskService) { }
 
   ngOnInit(): void {

@@ -1,8 +1,8 @@
 export interface Task {
-  taskId: number;
+  taskId?: number;
   title: string;
   description: string;
-  priorityId: number;
+  priority: Priority;
   createdAt: Date;
   deadline: Date;
   subtasks?: Subtask[];
@@ -16,6 +16,6 @@ export interface Subtask {
 
 export interface Priority {
   priorityId: number;
-  name: string;
-  color: string;
+  name?: string;
+  color?: string;
 }

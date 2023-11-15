@@ -1,45 +1,68 @@
-<div class="w-full bg-white inline-block px-3 py-6 rounded-md border border-gray-300 shadow-sm">
-  <div class="font-bold" >Create Task</div>
+<div class="w-full bg-white inline-block py-6 rounded-md border border-gray-300 shadow-sm">
+  <div class="font-bold text-2xl px-6" >Create Task</div>
+  <hr class="border-t-2 border-gray-300">
 
-<form class="mt-6">
-  <div class="grid grid-cols-1 gap-2">
-    <div>
-      <label for="taskTitle" class="inputTextTest block mb-2 text-sm font-medium text-gray-900">Title</label>
-      <input type="text" id="taskTitle" class="bg-white border text-gray-900 text-sm rounded-md block w-full p-2.5" placeholder="Title" required>
-    </div>
-    <div>
-      <label for="taskDescription" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-      <textarea id="taskDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 " placeholder="Task description..."></textarea>
-    </div>
-    <div>
-      Subtarefas
-      <div class="form-check flex items-center gap-2 p-0">
-        <input
-          type="text"
-          id="substask"
-          name="novaSubtask"
-          [(ngModel)]="novaSubtask"
-          class="bg-white border text-gray-900 text-sm rounded-md block w-full p-2.5"
-          placeholder="Subtarefa"
-        />
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-1 gap-2 px-6 py-6">
+      <div>
+        <label for="title" class="inputTextTest block mb-2 text-sm font-medium text-gray-900">Title</label>
+        <input formControlName="title" type="text" id="title" class="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5" placeholder="Title" required>
+      </div>
+      <div>
+        <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+        <textarea formControlName="description" id="taskDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 " placeholder="Task description..."></textarea>
+      </div>
+      <div class="flex gap-x-6">
+        <div class="w-full">
+          <label class="inputTextTest block mb-2 text-sm font-medium text-gray-900">Priotiry</label>
+          <select
+            formControlName="priorityId"
+            id="countries"
+            class="px-3 text-lg font-semibold text-gray-800 cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5">
+            <option [ngValue]="null" selected>Choose a priority</option>
+            <option [value]="2">Low</option>
+            <option [value]="3">Normal</option>
+            <option [value]="4">High</option>
+          </select>
 
-        <div
-          (click)="adicionarSubtask()"
-          class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none click:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center"
-        >
-          +
+        </div>
+        <div class="w-full">
+          <label class="inputTextTest block mb-2 text-sm font-medium text-gray-900">Deadline</label>
+          <div class="px-3">
+            <app-date-picker (datepickerValueChange)="handleDatepickerValueChange($event)"></app-date-picker>
+          </div>
         </div>
       </div>
+      <div>
+        Add subtasks
+        <div class="form-check flex items-center gap-2 p-0">
+          <input
+            type="text"
+            id="substask"
+            name="novaSubtask"
 
-      <div *ngFor="let substask of subtasks" class="flex items-center gap-2">
-        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
-        <div>{{ substask.title }}</div>
+            class="bg-white border text-gray-900 text-sm rounded-md block w-full p-2.5 bg-gray-50 "
+            placeholder="Subtarefa"
+          />
+
+          <div
+            class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none click:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center"
+          >
+            +
+          </div>
+        </div>
+        <div *ngIf="subtasks.length">List of subtasks</div>
+        <div *ngFor="let substask of subtasks" class="flex items-center gap-2">
+          <!-- <div>- {{ substask.title }}</div> -->
+        </div>
       </div>
     </div>
-  </div>
-  <button type="submit" class=" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">+ Add New Task</button>
-
-</form>
+    <hr class=" border-t-2 border-gray-300">
+    <div class="px-4 flex justify-end gap-x-2">
+      <button class=" mt-3 text-black bg-gray-100 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center border border-gray-300">Cancel</button>
+      <button type="submit" class=" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">+ Add New Task</button>
+    </div>
+  </form>
 
 </div>
 
