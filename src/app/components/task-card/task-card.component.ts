@@ -25,7 +25,6 @@ export class TaskCardComponent implements OnInit {
     this.completedTasks = this.task.subtasks.filter((subtk: any) => subtk.isDone).length;
 
     this.progress = this.calculateProgress(this.totalTasks, this.completedTasks)
-    console.log(this.task.priority["color"])
 
   }
 
