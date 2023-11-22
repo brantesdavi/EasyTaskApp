@@ -1,7 +1,8 @@
 import { TaskService } from 'src/app/services/task/task.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task, Subtask } from '../../models/task.model';
+import { GeneralService } from 'src/app/services/shared/general.service';
 
 @Component({
   selector: 'app-dialog',
@@ -10,12 +11,14 @@ import { Task, Subtask } from '../../models/task.model';
 })
 export class DialogComponent implements OnInit {
 
+  @Output() modalClosed: EventEmitter<any> = new EventEmitter();
+
   subtasks: Subtask[] = [];
   novaSubtask: string = '';
   form!: FormGroup;
   TaskService: any;
 
-  constructor(private formBuilder: FormBuilder,  private taskService: TaskService) { }
+  constructor(private formBuilder: FormBuilder,  private taskService: TaskService, public general: GeneralService, ) { }
 
   ngOnInit(): void {
 
@@ -61,7 +64,9 @@ export class DialogComponent implements OnInit {
       };
 
       this.taskService.createTask(taskData).subscribe({
-        next: () => console.log("sucesso")
+        next: () => {
+          this.modalClosed.emit()
+        }
       });
     }
   }

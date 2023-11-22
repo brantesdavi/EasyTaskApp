@@ -13,7 +13,7 @@
   <div>
     {{task.description}}
   </div>
-  <div *ngIf="task.subtasks">
+  <div *ngIf="totalTasks > 0">
     <div class="mb-2">
       Tasks: {{completedTasks}}/{{totalTasks}}
     </div>

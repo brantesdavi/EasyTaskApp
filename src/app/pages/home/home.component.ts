@@ -15,54 +15,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   task: Task | undefined;
   subscription: Subscription | undefined
 
-  // listTasks: Task[] = [
-  //   {
-  //     taskId: 0,
-  //     title: "Title: High priority mobile app design",
-  //     description: "Title: High priority mobile app design",
-  //     priorityId: 4,
-  //     createdAt: new Date(),
-  //     deadline: new Date(),
-  //     subtasks: [
-  //       {
-  //         subtaskId: 0,
-  //         description: "Do something",
-  //         done: false
-  //       },
-  //     ],
-  //   }
-  // ]
-
   constructor(public general: GeneralService, private taskService: TaskService) { }
 
   ngOnInit(): void {
 
+    this.getAllTasks();
+
+  }
+
+  onModalClosed() {
+    this.toggleDialog();
+    this.getAllTasks();
+  }
+
+  toggleDialog(): void {
+    this.general.showDialog = !this.general.showDialog;
+  }
+
+  getAllTasks(): void{
     this.subscription = this.taskService.getAllTask().subscribe({
       next: lTasks => this.listTasks = lTasks,
       error: er => console.error(er),
       complete: () => console.log("Observable completado")
 
     });
-
-  }
-
-  // taskResultToTasks(tasks: Task[]){
-  //   tasks.forEach(t=> {
-  //     this.task = {
-  //       taskId: t.taskId,
-  //       title: t.title,
-  //       description: t.description,
-  //       priorityId: t.priorityId,
-  //       createdAt: t.createdAt,
-  //       deadline: t.deadline,
-  //       // subtasks?: Subtask[]Number
-  //     }
-  //   })
-  // }
-
-
-  toggleDialog(): void {
-    this.general.showDialog = !this.general.showDialog;
   }
 
   ngOnDestroy(): void {

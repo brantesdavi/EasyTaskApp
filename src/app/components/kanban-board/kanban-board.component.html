@@ -1,0 +1,18 @@
+<div class="container bg-white p-4 rounded ">
+  <div class="kanban-header flex items">
+    <div class="w-full">
+      <button type="button"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      New task
+      </button>
+    </div>
+    <div class="w-full flex justify-end items-center">
+      <div class="bg-blue-100 py-2 px-3 rounded">
+        <span class="text-lg font-bold text-gray-500">{{listTasks.length}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="list-task mt-4 gap-y-2" *ngFor="let task of listTasks">
+    <app-task-card [task]="task"></app-task-card>
+  </div>
+</div>

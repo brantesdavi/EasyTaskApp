@@ -19,3 +19,11 @@ export interface Priority {
   name?: string;
   color?: string;
 }
+
+export interface TaskByStatus {
+  statusId: number;
+  name?: string;
+  taskList?: Task[];
+}
+
+

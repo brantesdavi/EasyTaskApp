@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { TaskCardModule } from 'src/app/components/task-card/task-card.module';
 import { DialogModule } from 'src/app/components/dialog/dialog.module';
+import { KanbanBoardModule } from 'src/app/components/kanban-board/kanban-board.module';
 
 
 
@@ -13,7 +14,8 @@ import { DialogModule } from 'src/app/components/dialog/dialog.module';
   imports: [
     CommonModule,
     TaskCardModule,
-    DialogModule
+    DialogModule,
+    KanbanBoardModule
   ],
   exports: [
     HomeComponent
